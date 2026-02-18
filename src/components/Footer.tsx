@@ -34,7 +34,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-display text-3xl font-semibold tracking-wide mb-4">TERRA</h3>
+            <h3 className="font-display text-2xl lg:text-3xl font-semibold tracking-wide mb-4">Araquin Sánchez</h3>
             <p className="font-body text-sm text-primary-foreground/70 font-light leading-relaxed">
               {t.footer.tagline}
             </p>
@@ -73,7 +73,7 @@ export function Footer() {
               <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Facebook">
                 <FacebookIcon />
               </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/araquinsanchez?igsh=Znh6czBpcXQ0ejVy" target="_blank" rel="noopener noreferrer" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Instagram">
                 <InstagramIcon />
               </a>
               <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="TikTok">
@@ -105,7 +105,7 @@ export function Footer() {
 
         <div className="border-t border-primary-foreground/10 mt-12 pt-8 text-center">
           <p className="font-body text-xs text-primary-foreground/40 tracking-wide">
-            © {new Date().getFullYear()} TERRA. {t.footer.rights}
+            © {new Date().getFullYear()} Araquin Sánchez. {t.footer.rights}
           </p>
         </div>
       </div>
