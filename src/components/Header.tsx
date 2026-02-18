@@ -28,7 +28,7 @@ export function Header() {
 
           {/* Logo */}
           <a href="#" className="font-display text-2xl lg:text-3xl font-semibold tracking-wide text-foreground">
-            TERRA
+            Araquin Sánchez
           </a>
 
           {/* Desktop nav */}
