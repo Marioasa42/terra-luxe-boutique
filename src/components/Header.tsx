@@ -27,7 +27,7 @@ export function Header() {
           </button>
 
           {/* Logo */}
-          <a href="#" className="font-display text-2xl lg:text-3xl font-semibold tracking-wide text-foreground">
+          <a href="#" className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase text-foreground">
             Araquin Sánchez
           </a>
 

@@ -1,5 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import { MapPin, Mail } from 'lucide-react';
+import { MapPin, Mail, MessageCircle } from 'lucide-react';
 
 function FacebookIcon() {
   return (
@@ -34,7 +34,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-display text-2xl lg:text-3xl font-semibold tracking-wide mb-4">Araquin Sánchez</h3>
+            <h3 className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase mb-4">Araquin Sánchez</h3>
             <p className="font-body text-sm text-primary-foreground/70 font-light leading-relaxed">
               {t.footer.tagline}
             </p>
@@ -92,6 +92,15 @@ export function Footer() {
                 <MapPin size={16} />
                 <span className="font-body text-sm">{t.footer.address}</span>
               </div>
+              <a
+                href="https://wa.me/393883978439"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+              >
+                <MessageCircle size={16} />
+                <span className="font-body text-sm">+39 388 397 8439</span>
+              </a>
               <a
                 href="mailto:info@terrabags.it"
                 className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
