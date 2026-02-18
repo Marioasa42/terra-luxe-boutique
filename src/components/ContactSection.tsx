@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Send } from 'lucide-react';
+import { Send, Phone } from 'lucide-react';
 
 export function ContactSection() {
   const { t } = useLanguage();
@@ -22,6 +22,15 @@ export function ContactSection() {
           <p className="mt-4 font-body text-muted-foreground text-base font-light">
             {t.contact.subtitle}
           </p>
+          <a
+            href="https://wa.me/393883978439"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-3 font-body text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <Phone size={14} />
+            +39 388 397 8439
+          </a>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
