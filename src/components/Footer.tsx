@@ -34,7 +34,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase mb-4">Araquin Sánchez</h3>
+            <h3 className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase mb-4">ARAQUIN SÁNCHEZ</h3>
             <p className="font-body text-sm text-primary-foreground/70 font-light leading-relaxed">
               {t.footer.tagline}
             </p>
@@ -46,6 +46,11 @@ export function Footer() {
               {t.footer.quickLinks}
             </h4>
             <ul className="space-y-3">
+              <li>
+                <a href="#storia" className="font-body text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  Storia
+                </a>
+              </li>
               <li>
                 <a href="#collezioni" className="font-body text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                   {t.nav.collections}
@@ -114,7 +119,7 @@ export function Footer() {
 
         <div className="border-t border-primary-foreground/10 mt-12 pt-8 text-center">
           <p className="font-body text-xs text-primary-foreground/40 tracking-wide">
-            © {new Date().getFullYear()} Araquin Sánchez. {t.footer.rights}
+            © {new Date().getFullYear()} ARAQUIN SÁNCHEZ. {t.footer.rights}
           </p>
         </div>
       </div>

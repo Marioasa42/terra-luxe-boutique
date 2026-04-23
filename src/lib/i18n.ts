@@ -9,8 +9,8 @@ export const translations = {
       sustainability: 'Sostenibilità',
     },
     hero: {
-      welcome: 'Benvenuti',
-      subtitle: 'Dove la natura incontra il lusso. Borse artigianali sostenibili, realizzate con amore in Italia.',
+      welcome: 'Moda sostenibile di lusso Made in Italy',
+      subtitle: 'Borse vegane e di juta in edizione limitata, disegnate tra Pesaro e l\'artigianalità italiana.',
       shopNow: 'Scopri la Collezione',
     },
     collections: {
@@ -67,8 +67,8 @@ export const translations = {
       sustainability: 'Sostenibilidad',
     },
     hero: {
-      welcome: 'Bienvenidos',
-      subtitle: 'Donde la naturaleza encuentra el lujo. Bolsos artesanales sostenibles, hechos con amor en Italia.',
+      welcome: 'Moda sostenible de lujo Made in Italy',
+      subtitle: 'Bolsos veganos y de yute en edición limitada, diseñados entre Pesaro y la artesanía italiana.',
       shopNow: 'Descubre la Colección',
     },
     collections: {
@@ -125,8 +125,8 @@ export const translations = {
       sustainability: 'Sustainability',
     },
     hero: {
-      welcome: 'Welcome',
-      subtitle: 'Where nature meets luxury. Sustainable handcrafted bags, made with love in Italy.',
+      welcome: 'Sustainable luxury fashion Made in Italy',
+      subtitle: 'Limited-edition vegan and jute handbags designed between Pesaro and Italian craftsmanship.',
       shopNow: 'Discover the Collection',
     },
     collections: {

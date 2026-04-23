@@ -8,6 +8,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
+    { label: 'Benvenutti', href: '#benvenutti' },
+    { label: 'Storia', href: '#storia' },
     { label: t.nav.collections, href: '#collezioni' },
     { label: t.nav.sustainability, href: '#sostenibilita' },
     { label: t.nav.contact, href: '#contatti' },
@@ -27,12 +29,12 @@ export function Header() {
           </button>
 
           {/* Logo */}
-          <a href="#" className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase text-foreground">
-            Araquin Sánchez
+          <a href="#home" className="font-body text-sm sm:text-base lg:text-lg font-light tracking-[0.35em] uppercase text-foreground">
+            ARAQUIN SÁNCHEZ
           </a>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-10">
+          <nav className="hidden lg:flex items-center gap-7 xl:gap-10">
             {navItems.map((item) => (
               <a
                 key={item.href}
