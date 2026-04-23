@@ -39,18 +39,3 @@ export function HeroSection() {
     </section>
   );
 }
-          {t.hero.welcome}
-        </h1>
-        <p className="mt-6 max-w-lg font-body text-base md:text-lg text-primary-foreground/80 font-light tracking-wide opacity-0 animate-fade-up animation-delay-200">
-          {t.hero.subtitle}
-        </p>
-        <a
-          href="#collezioni"
-          className="mt-10 inline-block border border-primary-foreground/60 text-primary-foreground px-8 py-3 font-body text-sm tracking-[0.2em] uppercase hover:bg-primary-foreground hover:text-foreground transition-all duration-500 opacity-0 animate-fade-up animation-delay-400"
-        >
-          {t.hero.shopNow}
-        </a>
-      </div>
-    </section>
-  );
-}
