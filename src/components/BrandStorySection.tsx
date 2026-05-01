@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import designerPortrait from '@/assets/designer-portrait.jpg';
 
 const storyTexts = {
   it: "Sono venezuelana, laureata in Design di Moda, con oltre 20 anni di esperienza. 9 anni fa ho iniziato con la juta su tela, un material riciclabile, e ho iniziato a personalizzare le mie creazioni. Le spiagge di Pesaro si sono riempite dei miei disegni, e lì mi sono resa conto della magia e del potenziale di questo meraviglioso progetto. Oggi realizzo ogni borsa in quantità limitate. Creo i miei bozzetti e collaboro con artigiani italiani per creare un prodotto Made in Italy, con anima venezuelana e amore italiano, dando importanza al paese in cui vivo. Dietro ogni prodotto c'è la mia storia di emigración, tutto ciò che ho imparato e il percorso che ho intrapreso fino ad arrivare qui, piena di amore e integrazione. Qui ho formato la mia famiglia, completamente italiana 🇮🇹. Ora che le mie figlie sono grandi, ho pensato: 'È il mio momento. Voglio fare ciò che amo: moda'. Oggi disegno borse vegane EcoGreen, con coscienza ambientale. Il concetto vegano, nato nell'alimentazione secondo quanto ho studiato, oggi si estende anche alla moda y all'abbigliamiento. Grazie per accompagnarmi.",
@@ -60,19 +61,19 @@ export function BrandStorySection() {
               </Tabs>
             </div>
 
-            <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light">
+            <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light text-justify hyphens-auto">
               {storyTexts[lang]}
             </p>
           </div>
 
           <div className="order-1 lg:order-2">
-            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden bg-gradient-to-br from-card via-nude to-secondary border border-border">
-              <div className="absolute inset-6 border border-primary/15" />
-              <div className="relative flex h-full items-center justify-center px-8 text-center">
-                <span className="font-body text-xs md:text-sm tracking-[0.28em] uppercase text-muted-foreground leading-6">
-                  Insertar Foto de la Diseñadora Aquí
-                </span>
-              </div>
+            <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-lg border border-border shadow-lg">
+              <img
+                src={designerPortrait}
+                alt="Araquin Sánchez — Designer"
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </div>
           </div>
         </div>
