@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // 👇 AQUÍ AGREGAS LA RUTA BASE CON EL NOMBRE DE TU REPO 👇
+  base: "/terra-luxe-boutique/",
+  
   server: {
     host: "::",
     port: 8080,
