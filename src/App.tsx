@@ -15,7 +15,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        {/* 👇 AQUÍ ESTÁ EL CAMBIO 👇 */}
+        <BrowserRouter basename="/terra-luxe-boutique/">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="*" element={<NotFound />} />
