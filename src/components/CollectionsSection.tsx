@@ -7,39 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import pochette1 from '@/assets/pochettes/1.jpg';
-import pochette2 from '@/assets/pochettes/2.jpg';
-import pochette3 from '@/assets/pochettes/3.jpg';
-import pochette4 from '@/assets/pochettes/4.jpg';
-import pochette5 from '@/assets/pochettes/5.jpg';
-import pochette6 from '@/assets/pochettes/6.jpg';
-import pochette7 from '@/assets/pochettes/7.jpg';
-import pochette8 from '@/assets/pochettes/8.jpg';
-import pochette9 from '@/assets/pochettes/9.jpg';
-import pochette10 from '@/assets/pochettes/10.jpg';
-import pochette11 from '@/assets/pochettes/11.jpg';
-import pochette12 from '@/assets/pochettes/12.jpg';
-import pochette13 from '@/assets/pochettes/13.jpg';
-import roja from '@/assets/lujo/roja.jpg';
-import blanca from '@/assets/lujo/blanca.jpg';
-import marron from '@/assets/lujo/marron.jpg';
-import negra from '@/assets/lujo/negra.jpg';
-import rojas1 from '@/assets/lujo/rojas/1.jpg';
-import rojas2 from '@/assets/lujo/rojas/2.jpg';
-import rojas3 from '@/assets/lujo/rojas/3.jpg';
-import rojas4 from '@/assets/lujo/rojas/4.jpg';
-import blancas1 from '@/assets/lujo/blancas/1.jpg';
-import blancas2 from '@/assets/lujo/blancas/2.jpg';
-import blancas3 from '@/assets/lujo/blancas/3.jpg';
-import blancas4 from '@/assets/lujo/blancas/4.jpg';
-import marrones1 from '@/assets/lujo/marrones/1.jpg';
-import marrones2 from '@/assets/lujo/marrones/2.jpg';
-import marrones3 from '@/assets/lujo/marrones/3.jpg';
-import marrones4 from '@/assets/lujo/marrones/4.jpg';
-import negras1 from '@/assets/lujo/negras/1.jpg';
-import negras2 from '@/assets/lujo/negras/2.jpg';
-import negras3 from '@/assets/lujo/negras/3.jpg';
-import negras4 from '@/assets/lujo/negras/4.jpg';
 
 type Product = {
   name: string;
@@ -53,46 +20,103 @@ type CollectionBlock = {
   products: Product[];
 };
 
-const pochetteImages = [
-  pochette1,
-  pochette2,
-  pochette3,
-  pochette4,
-  pochette5,
-  pochette6,
-  pochette7,
-  pochette8,
-  pochette9,
-  pochette10,
-  pochette11,
-  pochette12,
-  pochette13,
+const pochetteFiles = [
+  '1.jpg',
+  '2.jpg',
+  '3.jpg',
+  '4.jpg',
+  '5.jpg',
+  '6.jpg',
+  '7.jpg',
+  '8.jpg',
+  '8B.jpg',
+  '9.jpg',
+  '10.jpg',
+  '10A.jpg',
+  '10B.jpg',
+  '10C.jpg',
+  '10D.jpg',
+  '11.jpg',
+  '12.jpg',
+  '13.jpg',
+  '14.jpg',
+  '15.jpg',
+  '16.jpg',
+  '17.jpg',
 ];
+
+const mareFiles = [
+  '1.jpg',
+  '10.jpg',
+  '2.jpg',
+  '3.jpg',
+  '4.jpg',
+  '5.jpg',
+  '6.jpg',
+  '7.jpg',
+  '8.jpg',
+  '9.jpg',
+];
+
+const pochetteImages = pochetteFiles.map((file) => new URL(`../assets/pochettes/${file}`, import.meta.url).href);
+const mareImages = mareFiles.map((file) => new URL(`../assets/mare/${file}`, import.meta.url).href);
+const lujoImages = {
+  Vitto: new URL('../assets/lujo/roja.jpg', import.meta.url).href,
+  Aurora: new URL('../assets/lujo/blanca.jpg', import.meta.url).href,
+  Luisa: new URL('../assets/lujo/marron.jpg', import.meta.url).href,
+  Tina: new URL('../assets/lujo/negra.jpg', import.meta.url).href,
+};
+const lujoAlbums = {
+  Vitto: [
+    new URL('../assets/lujo/rojas/1.jpg', import.meta.url).href,
+    new URL('../assets/lujo/rojas/2.jpg', import.meta.url).href,
+    new URL('../assets/lujo/rojas/3.jpg', import.meta.url).href,
+    new URL('../assets/lujo/rojas/4.jpg', import.meta.url).href,
+  ],
+  Aurora: [
+    new URL('../assets/lujo/blancas/1.jpg', import.meta.url).href,
+    new URL('../assets/lujo/blancas/2.jpg', import.meta.url).href,
+    new URL('../assets/lujo/blancas/3.jpg', import.meta.url).href,
+    new URL('../assets/lujo/blancas/4.jpg', import.meta.url).href,
+  ],
+  Luisa: [
+    new URL('../assets/lujo/marrones/1.jpg', import.meta.url).href,
+    new URL('../assets/lujo/marrones/2.jpg', import.meta.url).href,
+    new URL('../assets/lujo/marrones/3.jpg', import.meta.url).href,
+    new URL('../assets/lujo/marrones/4.jpg', import.meta.url).href,
+  ],
+  Tina: [
+    new URL('../assets/lujo/negras/1.jpg', import.meta.url).href,
+    new URL('../assets/lujo/negras/2.jpg', import.meta.url).href,
+    new URL('../assets/lujo/negras/3.jpg', import.meta.url).href,
+    new URL('../assets/lujo/negras/4.jpg', import.meta.url).href,
+  ],
+};
 
 const luxuryProducts: Product[] = [
   {
     name: 'Vitto',
     price: '€280,00',
-    image: roja,
-    album: [rojas1, rojas2, rojas3, rojas4],
+    image: lujoImages.Vitto,
+    album: lujoAlbums.Vitto,
   },
   {
     name: 'Aurora',
     price: '€280,00',
-    image: blanca,
-    album: [blancas1, blancas2, blancas3, blancas4],
+    image: lujoImages.Aurora,
+    album: lujoAlbums.Aurora,
   },
   {
     name: 'Luisa',
     price: '€280,00',
-    image: marron,
-    album: [marrones1, marrones2, marrones3, marrones4],
+    image: lujoImages.Luisa,
+    album: lujoAlbums.Luisa,
   },
   {
     name: 'Tina',
     price: '€250,00',
-    image: negra,
-    album: [negras1, negras2, negras3, negras4],
+    image: lujoImages.Tina,
+    album: lujoAlbums.Tina,
   },
 ];
 
@@ -111,9 +135,10 @@ const collections: CollectionBlock[] = [
   },
   {
     title: 'Mare',
-    products: Array.from({ length: 16 }, (_, i) => ({
-      name: `Mare ${String(i + 1).padStart(2, '0')}`,
+    products: mareImages.map((image) => ({
+      name: 'Mare',
       price: '€40,00',
+      image,
     })),
   },
 ];
@@ -179,13 +204,6 @@ function ProductCard({ product, displayImage, displayMode }: { product: Product;
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
         <div className="absolute inset-4 border border-primary/10" />
-        {!product.album && product.name !== 'Pochette' && (
-          <div className="relative flex h-full items-center justify-center px-5 text-center">
-            <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
-              {product.name}
-            </span>
-          </div>
-        )}
       </div>
       <div className="mt-5 flex items-start justify-between gap-4">
         <div>
