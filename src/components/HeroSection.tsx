@@ -1,4 +1,5 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import portadaImage from '@/assets/portada d11.jpg';
 
 export function HeroSection() {
   const { t } = useLanguage();
@@ -25,14 +26,14 @@ export function HeroSection() {
             </a>
           </div>
 
-          <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-secondary via-card to-nude border border-border opacity-0 animate-fade-up animation-delay-200">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,hsl(var(--nude)/0.65),transparent_35%),linear-gradient(135deg,hsl(var(--secondary)),hsl(var(--card)))]" />
+          <div className="relative aspect-video w-full overflow-hidden border border-border opacity-0 animate-fade-up animation-delay-200">
+            <img
+              src={portadaImage}
+              alt="Portada"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/10" />
             <div className="absolute inset-6 border border-primary/15" />
-            <div className="relative flex h-full items-center justify-center px-6 text-center">
-              <span className="font-body text-xs md:text-sm tracking-[0.28em] uppercase text-muted-foreground">
-                Insertar Imagen de Portada Aquí
-              </span>
-            </div>
           </div>
         </div>
       </div>
