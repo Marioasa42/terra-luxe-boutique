@@ -14,8 +14,8 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
-        <div className="flex justify-center py-10 bg-background">
-          <img src={logoImage} alt="Logo" className="h-24 w-auto object-contain" />
+        <div className="flex justify-center py-12 bg-background">
+          <img src={logoImage} alt="Logo" className="h-32 w-auto object-contain" />
         </div>
         <BenvenuttiSection />
         <BrandStorySection />

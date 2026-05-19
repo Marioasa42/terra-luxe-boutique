@@ -71,25 +71,25 @@ const pochetteImages = [
 
 const luxuryProducts: Product[] = [
   {
-    name: 'Roja',
+    name: 'Vitto',
     price: '€280,00',
     image: roja,
     album: [rojas1, rojas2, rojas3, rojas4],
   },
   {
-    name: 'Blanca',
+    name: 'Aurora',
     price: '€280,00',
     image: blanca,
     album: [blancas1, blancas2, blancas3, blancas4],
   },
   {
-    name: 'Marron',
+    name: 'Luisa',
     price: '€280,00',
     image: marron,
     album: [marrones1, marrones2, marrones3, marrones4],
   },
   {
-    name: 'Negra',
+    name: 'Tina',
     price: '€250,00',
     image: negra,
     album: [negras1, negras2, negras3, negras4],
@@ -118,33 +118,68 @@ const collections: CollectionBlock[] = [
   },
 ];
 
-function ProductCard({ product, displayImage }: { product: Product; displayImage?: string }) {
+function FadeImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
+  const [currentSrc, setCurrentSrc] = useState(src);
+  const [prevSrc, setPrevSrc] = useState<string | null>(null);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    if (src === currentSrc) return;
+    setPrevSrc(currentSrc);
+    setCurrentSrc(src);
+    setVisible(false);
+    const showTimeout = window.setTimeout(() => setVisible(true), 20);
+    const clearTimeoutId = window.setTimeout(() => setPrevSrc(null), 720);
+
+    return () => {
+      window.clearTimeout(showTimeout);
+      window.clearTimeout(clearTimeoutId);
+    };
+  }, [src, currentSrc]);
+
+  return (
+    <>
+      {prevSrc && (
+        <img
+          src={prevSrc}
+          alt={alt}
+          className={`${className ?? ''} absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-in-out ${
+            visible ? 'opacity-0' : 'opacity-100'
+          }`}
+        />
+      )}
+      <img
+        src={currentSrc}
+        alt={alt}
+        className={`${className ?? ''} absolute inset-0 h-full w-full transition-opacity duration-700 ease-in-out ${
+          visible ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </>
+  );
+}
+
+function ProductCard({ product, displayImage, displayMode }: { product: Product; displayImage?: string; displayMode?: 'cover' | 'contain' }) {
+  const imageClass = displayMode === 'contain' ? 'object-contain' : 'object-cover';
+
   return (
     <article className="group cursor-pointer">
-      <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985]">
+      <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985] bg-background">
         {displayImage ? (
           <>
-            <img
-              src={displayImage}
-              alt={product.name}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            <FadeImage src={displayImage} alt={product.name} className={`absolute inset-0 h-full w-full ${imageClass}`} />
             <div className="absolute inset-0 bg-black/20" />
           </>
         ) : product.image ? (
           <>
-            <img
-              src={product.image}
-              alt={product.name}
-              className="absolute inset-0 h-full w-full object-cover"
-            />
+            <img src={product.image} alt={product.name} className={`absolute inset-0 h-full w-full ${imageClass}`} />
             <div className="absolute inset-0 bg-black/20" />
           </>
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
         <div className="absolute inset-4 border border-primary/10" />
-        {!product.album && (
+        {!product.album && product.name !== 'Pochette' && (
           <div className="relative flex h-full items-center justify-center px-5 text-center">
             <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
               {product.name}
@@ -224,7 +259,11 @@ export function CollectionsSection() {
                         key={`${collection.title}-${index}`}
                         className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                       >
-                        <ProductCard product={product} displayImage={displayImage} />
+                        <ProductCard
+                          product={product}
+                          displayImage={displayImage}
+                          displayMode={product.album ? 'contain' : 'cover'}
+                        />
                       </CarouselItem>
                     );
                   })}
