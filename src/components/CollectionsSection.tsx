@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Carousel,
@@ -6,6 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import pochette1 from '@/assets/pochettes/1.jpg';
 import pochette2 from '@/assets/pochettes/2.jpg';
 import pochette3 from '@/assets/pochettes/3.jpg';
@@ -19,11 +21,32 @@ import pochette10 from '@/assets/pochettes/10.jpg';
 import pochette11 from '@/assets/pochettes/11.jpg';
 import pochette12 from '@/assets/pochettes/12.jpg';
 import pochette13 from '@/assets/pochettes/13.jpg';
+import roja from '@/assets/lujo/roja.jpg';
+import blanca from '@/assets/lujo/blanca.jpg';
+import marron from '@/assets/lujo/marron.jpg';
+import negra from '@/assets/lujo/negra.jpg';
+import rojas1 from '@/assets/lujo/rojas/1.jpg';
+import rojas2 from '@/assets/lujo/rojas/2.jpg';
+import rojas3 from '@/assets/lujo/rojas/3.jpg';
+import rojas4 from '@/assets/lujo/rojas/4.jpg';
+import blancas1 from '@/assets/lujo/blancas/1.jpg';
+import blancas2 from '@/assets/lujo/blancas/2.jpg';
+import blancas3 from '@/assets/lujo/blancas/3.jpg';
+import blancas4 from '@/assets/lujo/blancas/4.jpg';
+import marrones1 from '@/assets/lujo/marrones/1.jpg';
+import marrones2 from '@/assets/lujo/marrones/2.jpg';
+import marrones3 from '@/assets/lujo/marrones/3.jpg';
+import marrones4 from '@/assets/lujo/marrones/4.jpg';
+import negras1 from '@/assets/lujo/negras/1.jpg';
+import negras2 from '@/assets/lujo/negras/2.jpg';
+import negras3 from '@/assets/lujo/negras/3.jpg';
+import negras4 from '@/assets/lujo/negras/4.jpg';
 
 type Product = {
   name: string;
   price: string;
   image?: string;
+  album?: string[];
 };
 
 type CollectionBlock = {
@@ -47,13 +70,37 @@ const pochetteImages = [
   pochette13,
 ];
 
+const luxuryProducts: Product[] = [
+  {
+    name: 'Roja',
+    price: '€280,00',
+    image: roja,
+    album: [rojas1, rojas2, rojas3, rojas4],
+  },
+  {
+    name: 'Blanca',
+    price: '€280,00',
+    image: blanca,
+    album: [blancas1, blancas2, blancas3, blancas4],
+  },
+  {
+    name: 'Marron',
+    price: '€280,00',
+    image: marron,
+    album: [marrones1, marrones2, marrones3, marrones4],
+  },
+  {
+    name: 'Negra',
+    price: '€250,00',
+    image: negra,
+    album: [negras1, negras2, negras3, negras4],
+  },
+];
+
 const collections: CollectionBlock[] = [
   {
     title: 'Eredità di Lusso',
-    products: Array.from({ length: 4 }, (_, i) => ({
-      name: `Eredità ${String(i + 1).padStart(2, '0')}`,
-      price: '€40,00',
-    })),
+    products: luxuryProducts,
   },
   {
     title: 'Pochette',
@@ -72,9 +119,20 @@ const collections: CollectionBlock[] = [
   },
 ];
 
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
   return (
-    <article className="group cursor-pointer">
+    <article
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          onClick();
+        }
+      }}
+      className="group cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
       <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985]">
         {product.image ? (
           <>
@@ -89,11 +147,13 @@ function ProductCard({ product }: { product: Product }) {
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
         <div className="absolute inset-4 border border-primary/10" />
-        <div className="relative flex h-full items-center justify-center px-5 text-center">
-          <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
-            {product.name}
-          </span>
-        </div>
+        {!(product.name === 'Pochette' && product.image) && (
+          <div className="relative flex h-full items-center justify-center px-5 text-center">
+            <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
+              {product.name}
+            </span>
+          </div>
+        )}
       </div>
       <div className="mt-5 flex items-start justify-between gap-4">
         <div>
@@ -112,6 +172,20 @@ function ProductCard({ product }: { product: Product }) {
 
 export function CollectionsSection() {
   const { t } = useLanguage();
+  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const openProduct = (product: Product) => {
+    setActiveProduct(product);
+    setDialogOpen(true);
+  };
+
+  const handleDialogOpenChange = (open: boolean) => {
+    setDialogOpen(open);
+    if (!open) {
+      setActiveProduct(null);
+    }
+  };
 
   return (
     <section id="collezioni" className="py-24 lg:py-32 bg-background">
@@ -129,7 +203,7 @@ export function CollectionsSection() {
           {collections.map((collection) => (
             <div key={collection.title}>
               <div className="mb-8 flex items-end justify-between gap-6">
-                <h3 className="font-display text-3xl lg:text-4xl font-light tracking-wide text-foreground">
+                <h3 className="font-display text-4xl lg:text-5xl font-light tracking-wide text-foreground">
                   {collection.title}
                 </h3>
                 <p className="font-body text-xs tracking-[0.24em] uppercase text-muted-foreground">
@@ -144,7 +218,7 @@ export function CollectionsSection() {
                       key={`${collection.title}-${index}`}
                       className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                     >
-                      <ProductCard product={product} />
+                      <ProductCard product={product} onClick={() => openProduct(product)} />
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -155,6 +229,39 @@ export function CollectionsSection() {
           ))}
         </div>
       </div>
+
+      <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
+        {activeProduct ? (
+          <DialogContent className="max-w-4xl">
+            <DialogHeader>
+              <DialogTitle>{activeProduct.name}</DialogTitle>
+              <DialogDescription>{activeProduct.price}</DialogDescription>
+            </DialogHeader>
+            {activeProduct.album ? (
+              <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                {activeProduct.album.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`${activeProduct.name} ${index + 1}`}
+                    className="h-60 w-full rounded-xl object-cover"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="mt-6">
+                {activeProduct.image && (
+                  <img
+                    src={activeProduct.image}
+                    alt={activeProduct.name}
+                    className="h-80 w-full rounded-xl object-cover"
+                  />
+                )}
+              </div>
+            )}
+          </DialogContent>
+        ) : null}
+      </Dialog>
     </section>
   );
 }
