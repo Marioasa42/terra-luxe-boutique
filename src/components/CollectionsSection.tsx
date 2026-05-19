@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Carousel,
@@ -7,7 +7,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import pochette1 from '@/assets/pochettes/1.jpg';
 import pochette2 from '@/assets/pochettes/2.jpg';
 import pochette3 from '@/assets/pochettes/3.jpg';
@@ -119,22 +118,20 @@ const collections: CollectionBlock[] = [
   },
 ];
 
-function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
+function ProductCard({ product, displayImage }: { product: Product; displayImage?: string }) {
   return (
-    <article
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={(event) => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          onClick();
-        }
-      }}
-      className="group cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary"
-    >
+    <article className="group cursor-pointer">
       <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985]">
-        {product.image ? (
+        {displayImage ? (
+          <>
+            <img
+              src={displayImage}
+              alt={product.name}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </>
+        ) : product.image ? (
           <>
             <img
               src={product.image}
@@ -147,7 +144,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
         <div className="absolute inset-4 border border-primary/10" />
-        {!(product.name === 'Pochette' && product.image) && (
+        {!product.album && (
           <div className="relative flex h-full items-center justify-center px-5 text-center">
             <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
               {product.name}
@@ -172,20 +169,24 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
 
 export function CollectionsSection() {
   const { t } = useLanguage();
-  const [activeProduct, setActiveProduct] = useState<Product | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [activeAlbumIndices, setActiveAlbumIndices] = useState<Record<string, number>>({});
 
-  const openProduct = (product: Product) => {
-    setActiveProduct(product);
-    setDialogOpen(true);
-  };
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveAlbumIndices((prev) => {
+        const next: Record<string, number> = { ...prev };
+        luxuryProducts.forEach((product) => {
+          if (product.album) {
+            const current = prev[product.name] ?? 0;
+            next[product.name] = (current + 1) % product.album.length;
+          }
+        });
+        return next;
+      });
+    }, 3000);
 
-  const handleDialogOpenChange = (open: boolean) => {
-    setDialogOpen(open);
-    if (!open) {
-      setActiveProduct(null);
-    }
-  };
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <section id="collezioni" className="py-24 lg:py-32 bg-background">
@@ -203,7 +204,7 @@ export function CollectionsSection() {
           {collections.map((collection) => (
             <div key={collection.title}>
               <div className="mb-8 flex items-end justify-between gap-6">
-                <h3 className="font-display text-4xl lg:text-5xl font-light tracking-wide text-foreground">
+                <h3 className="font-display text-5xl lg:text-6xl font-light tracking-wide text-foreground">
                   {collection.title}
                 </h3>
                 <p className="font-body text-xs tracking-[0.24em] uppercase text-muted-foreground">
@@ -213,14 +214,20 @@ export function CollectionsSection() {
 
               <Carousel opts={{ align: 'start', loop: false }} className="relative">
                 <CarouselContent className="-ml-6">
-                  {collection.products.map((product, index) => (
-                    <CarouselItem
-                      key={`${collection.title}-${index}`}
-                      className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                    >
-                      <ProductCard product={product} onClick={() => openProduct(product)} />
-                    </CarouselItem>
-                  ))}
+                  {collection.products.map((product, index) => {
+                    const displayImage = product.album
+                      ? product.album[activeAlbumIndices[product.name] ?? 0]
+                      : product.image;
+
+                    return (
+                      <CarouselItem
+                        key={`${collection.title}-${index}`}
+                        className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                      >
+                        <ProductCard product={product} displayImage={displayImage} />
+                      </CarouselItem>
+                    );
+                  })}
                 </CarouselContent>
                 <CarouselPrevious className="hidden lg:inline-flex left-auto right-12 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
                 <CarouselNext className="hidden lg:inline-flex right-0 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
@@ -229,39 +236,6 @@ export function CollectionsSection() {
           ))}
         </div>
       </div>
-
-      <Dialog open={dialogOpen} onOpenChange={handleDialogOpenChange}>
-        {activeProduct ? (
-          <DialogContent className="max-w-4xl">
-            <DialogHeader>
-              <DialogTitle>{activeProduct.name}</DialogTitle>
-              <DialogDescription>{activeProduct.price}</DialogDescription>
-            </DialogHeader>
-            {activeProduct.album ? (
-              <div className="mt-6 grid gap-4 sm:grid-cols-2">
-                {activeProduct.album.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`${activeProduct.name} ${index + 1}`}
-                    className="h-60 w-full rounded-xl object-cover"
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="mt-6">
-                {activeProduct.image && (
-                  <img
-                    src={activeProduct.image}
-                    alt={activeProduct.name}
-                    className="h-80 w-full rounded-xl object-cover"
-                  />
-                )}
-              </div>
-            )}
-          </DialogContent>
-        ) : null}
-      </Dialog>
     </section>
   );
 }

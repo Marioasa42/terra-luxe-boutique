@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
-import portadaImage from '@/assets/portada d11.jpg';
+
+const portadaImage = new URL('../assets/portada d11.jpg', import.meta.url).href;
 
 export function HeroSection() {
   const { t } = useLanguage();
@@ -26,12 +27,6 @@ export function HeroSection() {
           <p className="mt-6 max-w-2xl font-body text-base md:text-lg text-white/85 leading-relaxed tracking-wide">
             {t.hero.subtitle}
           </p>
-          <a
-            href="#collezioni"
-            className="mt-10 inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-sm font-medium uppercase tracking-[0.24em] text-white transition hover:bg-white hover:text-foreground duration-300"
-          >
-            {t.hero.shopNow}
-          </a>
         </div>
       </div>
     </section>
