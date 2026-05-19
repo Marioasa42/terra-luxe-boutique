@@ -6,6 +6,7 @@ import { SustainabilitySection } from '@/components/SustainabilitySection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
+import logoImage from '@/assets/logo.png';
 
 const Index = () => {
   return (
@@ -13,6 +14,9 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <div className="flex justify-center py-10 bg-background">
+          <img src={logoImage} alt="Logo" className="h-24 w-auto object-contain" />
+        </div>
         <BenvenuttiSection />
         <BrandStorySection />
         <CollectionsSection />

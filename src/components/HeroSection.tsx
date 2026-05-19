@@ -5,35 +5,34 @@ export function HeroSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="pt-24 lg:pt-28 pb-12 bg-background">
+    <section id="home" className="pt-24 lg:pt-28 pb-0 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="grid min-h-[calc(100vh-7rem)] grid-rows-[auto_1fr] gap-10 lg:gap-12">
-          <div className="max-w-4xl pt-8 lg:pt-12 opacity-0 animate-fade-up">
-            <p className="font-body text-xs tracking-[0.35em] uppercase text-accent mb-5">
+        <div className="relative min-h-[calc(100vh-7rem)] overflow-hidden rounded-[2rem] border border-border shadow-2xl">
+          <img
+            src={portadaImage}
+            alt="Portada"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+
+          <div className="absolute inset-0 bg-black/35" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%)]" />
+
+          <div className="relative flex h-full flex-col justify-center px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-24">
+            <span className="font-body text-xs tracking-[0.35em] uppercase text-white/80 mb-5">
               Moda sostenibile di lusso · Made in Italy
-            </p>
-            <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-light text-foreground tracking-wide leading-[0.95]">
+            </span>
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light tracking-wide leading-tight max-w-3xl">
               {t.hero.welcome}
             </h1>
-            <p className="mt-6 max-w-2xl font-body text-base md:text-lg text-muted-foreground font-light leading-relaxed tracking-wide">
+            <p className="mt-6 max-w-2xl font-body text-base md:text-lg text-white/85 leading-relaxed tracking-wide">
               {t.hero.subtitle}
             </p>
             <a
               href="#collezioni"
-              className="mt-9 inline-block border border-primary text-primary px-8 py-3 font-body text-xs tracking-[0.25em] uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-500"
+              className="mt-10 inline-flex items-center justify-center rounded-full border border-white/70 bg-white/10 px-8 py-3 text-sm font-medium uppercase tracking-[0.24em] text-white transition hover:bg-white hover:text-foreground duration-300"
             >
               {t.hero.shopNow}
             </a>
-          </div>
-
-          <div className="relative aspect-video w-full overflow-hidden border border-border opacity-0 animate-fade-up animation-delay-200">
-            <img
-              src={portadaImage}
-              alt="Portada"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-black/10" />
-            <div className="absolute inset-6 border border-primary/15" />
           </div>
         </div>
       </div>
