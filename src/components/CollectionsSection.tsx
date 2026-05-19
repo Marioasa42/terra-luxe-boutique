@@ -6,10 +6,24 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import pochette1 from '@/assets/pochettes/1.jpg';
+import pochette2 from '@/assets/pochettes/2.jpg';
+import pochette3 from '@/assets/pochettes/3.jpg';
+import pochette4 from '@/assets/pochettes/4.jpg';
+import pochette5 from '@/assets/pochettes/5.jpg';
+import pochette6 from '@/assets/pochettes/6.jpg';
+import pochette7 from '@/assets/pochettes/7.jpg';
+import pochette8 from '@/assets/pochettes/8.jpg';
+import pochette9 from '@/assets/pochettes/9.jpg';
+import pochette10 from '@/assets/pochettes/10.jpg';
+import pochette11 from '@/assets/pochettes/11.jpg';
+import pochette12 from '@/assets/pochettes/12.jpg';
+import pochette13 from '@/assets/pochettes/13.jpg';
 
 type Product = {
   name: string;
   price: string;
+  image?: string;
 };
 
 type CollectionBlock = {
@@ -17,12 +31,20 @@ type CollectionBlock = {
   products: Product[];
 };
 
-const POCHET_NAMES = [
-  'Pochet 01', 'Pochet 02', 'Pochet 03', 'Pochet 04', 'Pochet 05',
-  'Pochet 06', 'Pochet 07', 'Pochet 08', 'Pochet 09', 'Pochet 10',
-  'Pochet 11', 'Pochet 12', 'Pochet 13', 'Pochet 14', 'Pochet 15',
-  'Pochet 16', 'Pochet 17', 'Pochet 18', 'Pochet 19', 'Pochet 20',
-  'Pochet 21',
+const pochetteImages = [
+  pochette1,
+  pochette2,
+  pochette3,
+  pochette4,
+  pochette5,
+  pochette6,
+  pochette7,
+  pochette8,
+  pochette9,
+  pochette10,
+  pochette11,
+  pochette12,
+  pochette13,
 ];
 
 const collections: CollectionBlock[] = [
@@ -34,8 +56,12 @@ const collections: CollectionBlock[] = [
     })),
   },
   {
-    title: 'Pochet',
-    products: POCHET_NAMES.map((name) => ({ name, price: '€40,00' })),
+    title: 'Pochette',
+    products: pochetteImages.map((image) => ({
+      name: 'Pochette',
+      price: '€120,00',
+      image,
+    })),
   },
   {
     title: 'Mare',
@@ -49,10 +75,22 @@ const collections: CollectionBlock[] = [
 function ProductCard({ product }: { product: Product }) {
   return (
     <article className="group cursor-pointer">
-      <div className="relative aspect-square overflow-hidden bg-gradient-to-br from-card via-secondary to-nude border border-border transition-transform duration-500 group-hover:scale-[0.985]">
+      <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985]">
+        {product.image ? (
+          <>
+            <img
+              src={product.image}
+              alt={product.name}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/20" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
+        )}
         <div className="absolute inset-4 border border-primary/10" />
         <div className="relative flex h-full items-center justify-center px-5 text-center">
-          <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-muted-foreground leading-5">
+          <span className="font-body text-[10px] md:text-xs tracking-[0.24em] uppercase text-white/90 leading-5">
             {product.name}
           </span>
         </div>
@@ -101,9 +139,9 @@ export function CollectionsSection() {
 
               <Carousel opts={{ align: 'start', loop: false }} className="relative">
                 <CarouselContent className="-ml-6">
-                  {collection.products.map((product) => (
+                  {collection.products.map((product, index) => (
                     <CarouselItem
-                      key={`${collection.title}-${product.name}`}
+                      key={`${collection.title}-${index}`}
                       className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                     >
                       <ProductCard product={product} />
