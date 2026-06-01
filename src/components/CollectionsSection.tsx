@@ -18,6 +18,7 @@ type Product = {
 type CollectionBlock = {
   title: string;
   products: Product[];
+  layout?: 'carousel' | 'grid';
 };
 
 const pochetteFiles = [
@@ -127,16 +128,18 @@ const collections: CollectionBlock[] = [
   },
   {
     title: 'Pochette',
+    layout: 'grid',
     products: pochetteImages.map((image) => ({
-      name: 'Pochette',
+      name: '',
       price: '€120,00',
       image,
     })),
   },
   {
     title: 'Mare',
+    layout: 'grid',
     products: mareImages.map((image) => ({
-      name: 'Mare',
+      name: '',
       price: '€40,00',
       image,
     })),
@@ -186,18 +189,19 @@ function FadeImage({ src, alt, className }: { src: string; alt: string; classNam
 
 function ProductCard({ product, displayImage, displayMode }: { product: Product; displayImage?: string; displayMode?: 'cover' | 'contain' }) {
   const imageClass = displayMode === 'contain' ? 'object-contain' : 'object-cover';
+  const altText = product.name || 'Product image';
 
   return (
     <article className="group cursor-pointer">
       <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985] bg-background">
         {displayImage ? (
           <>
-            <FadeImage src={displayImage} alt={product.name} className={`absolute inset-0 h-full w-full ${imageClass}`} />
+            <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
             <div className="absolute inset-0 bg-black/20" />
           </>
         ) : product.image ? (
           <>
-            <img src={product.image} alt={product.name} className={`absolute inset-0 h-full w-full ${imageClass}`} />
+            <img src={product.image} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
             <div className="absolute inset-0 bg-black/20" />
           </>
         ) : (
@@ -207,14 +211,20 @@ function ProductCard({ product, displayImage, displayMode }: { product: Product;
       </div>
       <div className="mt-5 flex items-start justify-between gap-4">
         <div>
-          <h3 className="font-body text-sm tracking-[0.16em] uppercase text-foreground">
-            {product.name}
-          </h3>
-          <p className="mt-2 font-body text-sm text-muted-foreground">{product.price}</p>
+          {product.name ? (
+            <h3 className="font-body text-sm tracking-[0.16em] uppercase text-foreground">
+              {product.name}
+            </h3>
+          ) : null}
+          <p className={`mt-2 font-body text-sm ${product.name ? 'text-muted-foreground' : 'text-foreground'}`}>
+            {product.price}
+          </p>
         </div>
-        <span className="hidden sm:inline-block font-body text-[10px] tracking-[0.2em] uppercase text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-          Scopri
-        </span>
+        {product.name ? (
+          <span className="hidden sm:inline-block font-body text-[10px] tracking-[0.2em] uppercase text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            Scopri
+          </span>
+        ) : null}
       </div>
     </article>
   );
@@ -265,30 +275,50 @@ export function CollectionsSection() {
                 </p>
               </div>
 
-              <Carousel opts={{ align: 'start', loop: false }} className="relative">
-                <CarouselContent className="-ml-6">
+              {collection.layout === 'grid' ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {collection.products.map((product, index) => {
                     const displayImage = product.album
                       ? product.album[activeAlbumIndices[product.name] ?? 0]
                       : product.image;
 
                     return (
-                      <CarouselItem
-                        key={`${collection.title}-${index}`}
-                        className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
-                      >
+                      <div key={`${collection.title}-${index}`}>
                         <ProductCard
                           product={product}
                           displayImage={displayImage}
                           displayMode={product.album ? 'contain' : 'cover'}
                         />
-                      </CarouselItem>
+                      </div>
                     );
                   })}
-                </CarouselContent>
-                <CarouselPrevious className="hidden lg:inline-flex left-auto right-12 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
-                <CarouselNext className="hidden lg:inline-flex right-0 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
-              </Carousel>
+                </div>
+              ) : (
+                <Carousel opts={{ align: 'start', loop: false }} className="relative">
+                  <CarouselContent className="-ml-6">
+                    {collection.products.map((product, index) => {
+                      const displayImage = product.album
+                        ? product.album[activeAlbumIndices[product.name] ?? 0]
+                        : product.image;
+
+                      return (
+                        <CarouselItem
+                          key={`${collection.title}-${index}`}
+                          className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                        >
+                          <ProductCard
+                            product={product}
+                            displayImage={displayImage}
+                            displayMode={product.album ? 'contain' : 'cover'}
+                          />
+                        </CarouselItem>
+                      );
+                    })}
+                  </CarouselContent>
+                  <CarouselPrevious className="hidden lg:inline-flex left-auto right-12 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
+                  <CarouselNext className="hidden lg:inline-flex right-0 -top-14 border-primary/25 bg-background text-primary hover:bg-primary hover:text-primary-foreground" />
+                </Carousel>
+              )}
             </div>
           ))}
         </div>

@@ -9,8 +9,9 @@ export const translations = {
       sustainability: 'Sostenibilità',
     },
     hero: {
+      title: 'BENVENUTTI',
       welcome: 'Moda sostenibile di lusso Made in Italy',
-      subtitle: 'Borse vegane e di juta in edizione limitata, disegnate tra Pesaro e l\'artigianalità italiana.',
+      subtitle: 'Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.',
       shopNow: 'Scopri la Collezione',
     },
     collections: {
@@ -58,6 +59,10 @@ export const translations = {
       shoulder: 'Borsa a Spalla Elegante',
       mini: 'Mini Borsa Sole',
     },
+    benvenutti: {
+      title: 'BENVENUTTI',
+      subtitle: 'Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.',
+    },
   },
   es: {
     nav: {
@@ -67,8 +72,9 @@ export const translations = {
       sustainability: 'Sostenibilidad',
     },
     hero: {
+      title: 'BENVENUTTI',
       welcome: 'Moda sostenible de lujo Made in Italy',
-      subtitle: 'Bolsos veganos y de yute en edición limitada, diseñados entre Pesaro y la artesanía italiana.',
+      subtitle: 'Bolsos veganos sostenibles, creados en series limitadas entre la naturaleza, el lujo y la artesanía italiana.',
       shopNow: 'Descubre la Colección',
     },
     collections: {
@@ -116,6 +122,10 @@ export const translations = {
       shoulder: 'Bolso de Hombro Elegante',
       mini: 'Mini Bolso Sol',
     },
+    benvenutti: {
+      title: 'BENVENUTTI',
+      subtitle: 'Bolsos veganos sostenibles, creados en series limitadas entre la naturaleza, el lujo y la artesanía italiana.',
+    },
   },
   en: {
     nav: {
@@ -125,8 +135,9 @@ export const translations = {
       sustainability: 'Sustainability',
     },
     hero: {
+      title: 'BENVENUTTI',
       welcome: 'Sustainable luxury fashion Made in Italy',
-      subtitle: 'Limited-edition vegan and jute handbags designed between Pesaro and Italian craftsmanship.',
+      subtitle: 'Sustainable vegan bags, created in limited series between nature, luxury and Italian craftsmanship.',
       shopNow: 'Discover the Collection',
     },
     collections: {
@@ -173,6 +184,10 @@ export const translations = {
       bucket: 'Nude Bucket Bag',
       shoulder: 'Elegant Shoulder Bag',
       mini: 'Mini Sun Bag',
+    },
+    benvenutti: {
+      title: 'BENVENUTTI',
+      subtitle: 'Sustainable vegan bags, created in limited series between nature, luxury and Italian craftsmanship.',
     },
   },
 } as const;

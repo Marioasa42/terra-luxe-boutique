@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import designerPortrait from '@/assets/designer-portrait.jpg';
+import designerPortrait from '@/assets/imagenDisenadora.jpg';
+import logoImage from '@/assets/logo.png';
 
 const storyTexts = {
   it: "Sono venezuelana, laureata in Design di Moda, con oltre 20 anni di esperienza. 9 anni fa ho iniziato con la juta su tela, un material riciclabile, e ho iniziato a personalizzare le mie creazioni. Le spiagge di Pesaro si sono riempite dei miei disegni, e lì mi sono resa conto della magia e del potenziale di questo meraviglioso progetto. Oggi realizzo ogni borsa in quantità limitate. Creo i miei bozzetti e collaboro con artigiani italiani per creare un prodotto Made in Italy, con anima venezuelana e amore italiano, dando importanza al paese in cui vivo. Dietro ogni prodotto c'è la mia storia di emigración, tutto ciò che ho imparato e il percorso che ho intrapreso fino ad arrivare qui, piena di amore e integrazione. Qui ho formato la mia famiglia, completamente italiana 🇮🇹. Ora che le mie figlie sono grandi, ho pensato: 'È il mio momento. Voglio fare ciò che amo: moda'. Oggi disegno borse vegane EcoGreen, con coscienza ambientale. Il concetto vegano, nato nell'alimentazione secondo quanto ho studiato, oggi si estende anche alla moda y all'abbigliamiento. Grazie per accompagnarmi.",
@@ -11,15 +13,20 @@ const storyTexts = {
 type StoryLang = keyof typeof storyTexts;
 
 export function BenvenuttiSection() {
+  const { t } = useLanguage();
+
   return (
-    <section id="benvenutti" className="py-20 lg:py-28 bg-background">
+    <section id="benvenutti" className="py-16 lg:py-20 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="mx-auto max-w-3xl text-center">
+          <div className="mb-8 flex justify-center">
+            <img src={logoImage} alt="Logo Araquin Sánchez" className="h-20 w-auto object-contain" />
+          </div>
           <p className="font-body text-xs tracking-[0.35em] uppercase text-accent mb-5">
-            Benvenutti
+            {t.benvenutti.title}
           </p>
           <h2 className="font-display text-4xl lg:text-6xl font-light text-foreground tracking-wide leading-tight">
-            Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.
+            {t.benvenutti.subtitle}
           </h2>
         </div>
       </div>
@@ -61,7 +68,7 @@ export function BrandStorySection() {
               </Tabs>
             </div>
 
-            <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light text-justify hyphens-auto">
+            <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light text-justify break-words tracking-wide">
               {storyTexts[lang]}
             </p>
           </div>

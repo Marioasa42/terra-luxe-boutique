@@ -1,5 +1,6 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MapPin, Mail, MessageCircle } from 'lucide-react';
+import logoImage from '@/assets/logo.png';
 
 function FacebookIcon() {
   return (
@@ -34,7 +35,10 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <h3 className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase mb-4">ARAQUIN SÁNCHEZ</h3>
+            <div className="mb-4 flex items-center justify-center gap-3">
+              <img src={logoImage} alt="Logo Araquin Sánchez" className="h-10 w-auto object-contain" />
+              <h3 className="font-body text-lg lg:text-xl font-light tracking-[0.35em] uppercase">ARAQUIN SÁNCHEZ</h3>
+            </div>
             <p className="font-body text-sm text-primary-foreground/70 font-light leading-relaxed">
               {t.footer.tagline}
             </p>
@@ -107,11 +111,11 @@ export function Footer() {
                 <span className="font-body text-sm">+39 388 397 8439</span>
               </a>
               <a
-                href="mailto:info@terrabags.it"
+                href="mailto:carmenaraquin@gmail.com"
                 className="flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
               >
                 <Mail size={16} />
-                <span className="font-body text-sm">info@terrabags.it</span>
+                <span className="font-body text-sm">carmenaraquin@gmail.com</span>
               </a>
             </div>
           </div>

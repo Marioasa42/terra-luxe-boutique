@@ -21,10 +21,10 @@ export function HeroSection() {
           <span className="font-body text-xs tracking-[0.35em] uppercase text-white/80 mb-5">
             Moda sostenibile di lusso · Made in Italy
           </span>
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-light tracking-wide leading-tight max-w-3xl">
-            {t.hero.welcome}
+          <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-extralight tracking-[0.18em] leading-tight max-w-3xl uppercase">
+            {t.hero.title}
           </h1>
-          <p className="mt-6 max-w-2xl font-body text-base md:text-lg text-white/85 leading-relaxed tracking-wide">
+          <p className="mt-4 max-w-3xl font-body text-lg md:text-xl text-white/90 leading-relaxed tracking-wide">
             {t.hero.subtitle}
           </p>
         </div>
