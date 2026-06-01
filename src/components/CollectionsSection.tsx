@@ -124,6 +124,7 @@ const luxuryProducts: Product[] = [
 const collections: CollectionBlock[] = [
   {
     title: 'Eredità di Lusso',
+    layout: 'grid',
     products: luxuryProducts,
   },
   {
@@ -276,7 +277,7 @@ export function CollectionsSection() {
               </div>
 
               {collection.layout === 'grid' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className={`grid grid-cols-1 sm:grid-cols-2 ${collection.title === 'Eredità di Lusso' ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-6`}>
                   {collection.products.map((product, index) => {
                     const displayImage = product.album
                       ? product.album[activeAlbumIndices[product.name] ?? 0]
