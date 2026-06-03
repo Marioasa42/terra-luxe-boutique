@@ -189,7 +189,6 @@ function FadeImage({ src, alt, className }: { src: string; alt: string; classNam
 }
 
 function ProductCard({ product, displayImage }: { product: Product; displayImage?: string }) {
-  const imageClass = 'object-contain';
   const altText = product.name || 'Product image';
 
   return (
@@ -199,38 +198,46 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative w-full max-w-64 h-60 sm:h-72 lg:h-80 overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background flex items-center justify-center">
+      {/* Imagen: ocupa el ancho completo sin max-w que la truncaba */}
+      <div className="relative w-full aspect-[4/5] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.98] bg-background flex items-center justify-center">
         {displayImage ? (
-          <>
-            <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
-            <div className="absolute inset-0 bg-black/20" />
-          </>
+          <FadeImage
+            src={displayImage}
+            alt={altText}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
         ) : product.image ? (
-          <>
-            <img src={product.image} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
-            <div className="absolute inset-0 bg-black/20" />
-          </>
+          <img
+            src={product.image}
+            alt={altText}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
-        <div className="absolute inset-4 border border-primary/10" />
+        {/* Borde interior decorativo alineado */}
+        <div className="absolute inset-3 border border-primary/10 pointer-events-none" />
+
+        {/* "Scopri" en hover sobre la imagen, no fuera */}
+        {product.name && (
+          <div className="absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+            <span className="font-body text-[10px] tracking-[0.2em] uppercase text-white bg-black/40 px-2 py-1">
+              Scopri
+            </span>
+          </div>
+        )}
       </div>
-      <div className="mt-5 flex items-start justify-between gap-4">
-        <div>
-          {product.name ? (
-            <h3 className="font-body text-sm tracking-[0.16em] uppercase text-foreground">
-              {product.name}
-            </h3>
-          ) : null}
-          <p className={`mt-2 font-body text-sm ${product.name ? 'text-muted-foreground' : 'text-foreground'}`}>
-            {product.price}
-          </p>
-        </div>
-        {product.name ? (
-          <span className="hidden sm:inline-block font-body text-[10px] tracking-[0.2em] uppercase text-accent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            Scopri
-          </span>
-        ) : null}
+
+      {/* Texto debajo, alineado al ancho completo de la tarjeta */}
+      <div className="mt-4 space-y-1">
+        {product.name && (
+          <h3 className="font-body text-sm tracking-[0.16em] uppercase text-foreground">
+            {product.name}
+          </h3>
+        )}
+        <p className={`font-body text-sm ${product.name ? 'text-muted-foreground' : 'text-foreground'}`}>
+          {product.price}
+        </p>
       </div>
     </article>
   );
