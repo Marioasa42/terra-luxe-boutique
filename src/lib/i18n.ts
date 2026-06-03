@@ -72,7 +72,7 @@ export const translations = {
       sustainability: 'Sostenibilidad',
     },
     hero: {
-      title: 'BENVENUTTI',
+      title: 'BIENVENIDO',
       welcome: 'Moda sostenible de lujo Made in Italy',
       subtitle: 'Bolsos veganos sostenibles, creados en series limitadas entre la naturaleza, el lujo y la artesanía italiana.',
       shopNow: 'Descubre la Colección',
@@ -123,7 +123,7 @@ export const translations = {
       mini: 'Mini Bolso Sol',
     },
     benvenutti: {
-      title: 'BENVENUTTI',
+      title: 'BIENVENIDO',
       subtitle: 'Bolsos veganos sostenibles, creados en series limitadas entre la naturaleza, el lujo y la artesanía italiana.',
     },
   },
@@ -135,7 +135,7 @@ export const translations = {
       sustainability: 'Sustainability',
     },
     hero: {
-      title: 'BENVENUTTI',
+      title: 'WELCOME',
       welcome: 'Sustainable luxury fashion Made in Italy',
       subtitle: 'Sustainable vegan bags, created in limited series between nature, luxury and Italian craftsmanship.',
       shopNow: 'Discover the Collection',
@@ -186,7 +186,7 @@ export const translations = {
       mini: 'Mini Sun Bag',
     },
     benvenutti: {
-      title: 'BENVENUTTI',
+      title: 'WELCOME',
       subtitle: 'Sustainable vegan bags, created in limited series between nature, luxury and Italian craftsmanship.',
     },
   },

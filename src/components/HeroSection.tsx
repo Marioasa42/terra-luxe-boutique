@@ -19,7 +19,7 @@ export function HeroSection() {
 
         <div className="relative flex h-full flex-col justify-center px-6 py-16 text-white sm:px-10 lg:px-16 lg:py-24">
           <span className="font-body text-xs tracking-[0.35em] uppercase text-white/80 mb-5">
-            Moda sostenibile di lusso · Made in Italy
+            {t.hero.welcome} · {t.benvenutti.title}
           </span>
           <h1 className="font-display text-6xl md:text-7xl lg:text-8xl font-extralight tracking-[0.18em] leading-tight max-w-3xl uppercase">
             {t.hero.title}

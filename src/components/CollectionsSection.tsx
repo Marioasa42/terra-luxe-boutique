@@ -194,12 +194,12 @@ function ProductCard({ product, displayImage, displayMode }: { product: Product;
 
   return (
     <article
-      className="group cursor-pointer"
+      className="group cursor-pointer w-full max-w-[22rem] mx-auto"
       role="button"
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-[4/5] max-h-72 overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985] bg-background">
+      <div className="relative aspect-square w-full max-w-[22rem] overflow-hidden rounded-lg border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
@@ -282,14 +282,14 @@ export function CollectionsSection() {
               </div>
 
               {collection.layout === 'grid' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
                   {collection.products.map((product, index) => {
                     const displayImage = product.album
                       ? product.album[activeAlbumIndices[product.name] ?? 0]
                       : product.image;
 
                     return (
-                      <div key={`${collection.title}-${index}`}>
+                      <div key={`${collection.title}-${index}`} className="flex justify-center">
                         <ProductCard
                           product={product}
                           displayImage={displayImage}
@@ -312,11 +312,13 @@ export function CollectionsSection() {
                           key={`${collection.title}-${index}`}
                           className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                         >
-                          <ProductCard
-                            product={product}
-                            displayImage={displayImage}
-                            displayMode={product.album ? 'contain' : 'cover'}
-                          />
+                          <div className="flex justify-center">
+                            <ProductCard
+                              product={product}
+                              displayImage={displayImage}
+                              displayMode={product.album ? 'contain' : 'cover'}
+                            />
+                          </div>
                         </CarouselItem>
                       );
                     })}

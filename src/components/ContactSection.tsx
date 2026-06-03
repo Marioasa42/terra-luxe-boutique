@@ -5,9 +5,22 @@ import { Send, Phone } from 'lucide-react';
 export function ContactSection() {
   const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    const subject = encodeURIComponent(name.trim() || 'Nuevo mensaje de contacto');
+    const body = encodeURIComponent([
+      `Nombre: ${name}`,
+      `Email: ${email}`,
+      '',
+      message,
+    ].join('\n'));
+
+    window.location.href = `mailto:carmenaraquin@gmail.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -41,6 +54,8 @@ export function ContactSection() {
             <input
               type="text"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               placeholder={t.contact.namePlaceholder}
               className="w-full px-4 py-3 bg-secondary border border-border font-body text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors"
             />
@@ -52,6 +67,8 @@ export function ContactSection() {
             <input
               type="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder={t.contact.emailPlaceholder}
               className="w-full px-4 py-3 bg-secondary border border-border font-body text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors"
             />
@@ -63,6 +80,8 @@ export function ContactSection() {
             <textarea
               required
               rows={5}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               placeholder={t.contact.messagePlaceholder}
               className="w-full px-4 py-3 bg-secondary border border-border font-body text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary transition-colors resize-none"
             />
