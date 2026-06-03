@@ -199,7 +199,7 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-square w-full min-h-[16rem] sm:min-h-[22rem] lg:min-h-[28rem] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
+      <div className="relative aspect-square w-full min-h-[14rem] sm:min-h-[16rem] lg:min-h-[20rem] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
