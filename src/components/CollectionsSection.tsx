@@ -198,27 +198,26 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      {/* Imagen: ocupa el ancho completo sin max-w que la truncaba */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.98] bg-background flex items-center justify-center">
+      {/* aspect-square = cuadrado, object-contain = sin recorte, max-w para que no crezca demasiado */}
+      <div className="relative w-full aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.98] bg-background flex items-center justify-center">
         {displayImage ? (
           <FadeImage
             src={displayImage}
             alt={altText}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain p-4"
           />
         ) : product.image ? (
           <img
             src={product.image}
             alt={altText}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-contain p-4"
           />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-card via-secondary to-nude" />
         )}
-        {/* Borde interior decorativo alineado */}
+
         <div className="absolute inset-3 border border-primary/10 pointer-events-none" />
 
-        {/* "Scopri" en hover sobre la imagen, no fuera */}
         {product.name && (
           <div className="absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
             <span className="font-body text-[10px] tracking-[0.2em] uppercase text-white bg-black/40 px-2 py-1">
@@ -228,14 +227,13 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
         )}
       </div>
 
-      {/* Texto debajo, alineado al ancho completo de la tarjeta */}
-      <div className="mt-4 space-y-1">
+      <div className="mt-3 space-y-0.5">
         {product.name && (
-          <h3 className="font-body text-sm tracking-[0.16em] uppercase text-foreground">
+          <h3 className="font-body text-xs tracking-[0.16em] uppercase text-foreground">
             {product.name}
           </h3>
         )}
-        <p className={`font-body text-sm ${product.name ? 'text-muted-foreground' : 'text-foreground'}`}>
+        <p className={`font-body text-xs ${product.name ? 'text-muted-foreground' : 'text-foreground'}`}>
           {product.price}
         </p>
       </div>
