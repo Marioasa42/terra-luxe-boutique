@@ -193,12 +193,11 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
 
   return (
     <article
-      className="group cursor-pointer w-full"
+      className="group cursor-pointer w-full max-w-[220px] mx-auto" // ← limita el ancho máximo
       role="button"
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      {/* aspect-square = cuadrado, object-contain = sin recorte, max-w para que no crezca demasiado */}
       <div className="relative w-full aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.98] bg-background flex items-center justify-center">
         {displayImage ? (
           <FadeImage
