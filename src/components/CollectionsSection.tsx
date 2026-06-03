@@ -199,7 +199,7 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-square w-full min-h-[28rem] overflow-hidden rounded-[1.5rem] border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
+      <div className="relative aspect-square w-full min-h-[16rem] sm:min-h-[22rem] lg:min-h-[28rem] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
@@ -282,14 +282,14 @@ export function CollectionsSection() {
               </div>
 
               {collection.layout === 'grid' ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 justify-items-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 justify-items-center">
                   {collection.products.map((product, index) => {
                     const displayImage = product.album
                       ? product.album[activeAlbumIndices[product.name] ?? 0]
                       : product.image;
 
                     return (
-                      <div key={`${collection.title}-${index}`} className="flex justify-center">
+                      <div key={`${collection.title}-${index}`} className="flex justify-center w-full">
                         <ProductCard
                           product={product}
                           displayImage={displayImage}
@@ -311,11 +311,10 @@ export function CollectionsSection() {
                           key={`${collection.title}-${index}`}
                           className="pl-6 basis-[82%] sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
                         >
-                          <div className="flex justify-center">
+                          <div className="flex justify-center w-full">
                             <ProductCard
                               product={product}
                               displayImage={displayImage}
-                              displayMode={product.album ? 'contain' : 'cover'}
                             />
                           </div>
                         </CarouselItem>
