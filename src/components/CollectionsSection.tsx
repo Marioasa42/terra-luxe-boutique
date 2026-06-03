@@ -194,12 +194,12 @@ function ProductCard({ product, displayImage, displayMode }: { product: Product;
 
   return (
     <article
-      className="group cursor-pointer w-full max-w-[22rem] mx-auto"
+      className="group cursor-pointer w-full max-w-[30rem] mx-auto"
       role="button"
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-square w-full max-w-[22rem] overflow-hidden rounded-lg border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
+      <div className="relative aspect-square w-full max-w-[30rem] overflow-hidden rounded-lg border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
