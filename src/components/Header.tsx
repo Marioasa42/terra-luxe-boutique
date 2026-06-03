@@ -8,8 +8,8 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const navItems = [
-    { label: 'Benvenutti', href: '#benvenutti' },
-    { label: 'Storia', href: '#storia' },
+    { label: t.benvenutti.title, href: '#benvenutti' },
+    { label: t.nav.about, href: '#storia' },
     { label: t.nav.collections, href: '#collezioni' },
     { label: t.nav.sustainability, href: '#sostenibilita' },
     { label: t.nav.contact, href: '#contatti' },

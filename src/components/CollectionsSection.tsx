@@ -139,9 +139,9 @@ const collections: CollectionBlock[] = [
   {
     title: 'Mare',
     layout: 'grid',
-    products: mareImages.map((image) => ({
+    products: mareImages.map((image, idx) => ({
       name: '',
-      price: '€40,00',
+      price: idx >= mareImages.length - 2 ? '€75,00' : '€89,00',
       image,
     })),
   },
@@ -193,8 +193,13 @@ function ProductCard({ product, displayImage, displayMode }: { product: Product;
   const altText = product.name || 'Product image';
 
   return (
-    <article className="group cursor-pointer">
-      <div className="relative aspect-square overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985] bg-background">
+    <article
+      className="group cursor-pointer"
+      role="button"
+      tabIndex={0}
+      onClick={() => (window.location.href = '#contatti')}
+    >
+      <div className="relative aspect-[4/5] max-h-72 overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.985] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />

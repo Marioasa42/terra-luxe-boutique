@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import designerPortrait from '@/assets/imagenDisenadora.jpg';
 import logoImage from '@/assets/logo.png';
 
@@ -35,7 +33,7 @@ export function BenvenuttiSection() {
 }
 
 export function BrandStorySection() {
-  const [lang, setLang] = useState<StoryLang>('it');
+  const { language, t } = useLanguage();
 
   return (
     <section id="storia" className="py-20 lg:py-32 bg-secondary/45">
@@ -43,33 +41,14 @@ export function BrandStorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="order-2 lg:order-1">
             <p className="font-body text-xs tracking-[0.35em] uppercase text-accent mb-5">
-              La Storia
+              {t.nav.about}
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-light text-foreground tracking-wide mb-8">
               Made in Italy, anima venezuelana.
             </h2>
 
-            <div className="mb-6 flex items-center gap-3">
-              <span className="font-body text-[10px] tracking-[0.3em] uppercase text-muted-foreground">
-                Lingua
-              </span>
-              <Tabs value={lang} onValueChange={(v) => setLang(v as StoryLang)}>
-                <TabsList className="h-8 bg-transparent border border-border rounded-none p-0.5 gap-0">
-                  {(['it', 'es', 'en'] as StoryLang[]).map((code) => (
-                    <TabsTrigger
-                      key={code}
-                      value={code}
-                      className="h-7 px-3 rounded-none font-body text-[11px] tracking-[0.25em] uppercase text-muted-foreground data-[state=active]:bg-foreground data-[state=active]:text-background data-[state=active]:shadow-none"
-                    >
-                      {code}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
-              </Tabs>
-            </div>
-
             <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light text-justify break-words tracking-wide">
-              {storyTexts[lang]}
+              {storyTexts[language as StoryLang]}
             </p>
           </div>
 
