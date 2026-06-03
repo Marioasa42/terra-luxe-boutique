@@ -189,7 +189,7 @@ function FadeImage({ src, alt, className }: { src: string; alt: string; classNam
 }
 
 function ProductCard({ product, displayImage }: { product: Product; displayImage?: string }) {
-  const imageClass = 'object-cover';
+  const imageClass = 'object-contain';
   const altText = product.name || 'Product image';
 
   return (
@@ -199,7 +199,7 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-square w-full max-w-64 min-h-[12rem] sm:min-h-[16rem] lg:min-h-[20rem] overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
+      <div className="relative w-full max-w-64 h-60 sm:h-72 lg:h-80 overflow-hidden border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background flex items-center justify-center">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
