@@ -188,18 +188,18 @@ function FadeImage({ src, alt, className }: { src: string; alt: string; classNam
   );
 }
 
-function ProductCard({ product, displayImage, displayMode }: { product: Product; displayImage?: string; displayMode?: 'cover' | 'contain' }) {
-  const imageClass = displayMode === 'contain' ? 'object-contain' : 'object-cover';
+function ProductCard({ product, displayImage }: { product: Product; displayImage?: string }) {
+  const imageClass = 'object-cover';
   const altText = product.name || 'Product image';
 
   return (
     <article
-      className="group cursor-pointer w-full max-w-[30rem] mx-auto"
+      className="group cursor-pointer w-full"
       role="button"
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
     >
-      <div className="relative aspect-square w-full max-w-[30rem] overflow-hidden rounded-lg border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
+      <div className="relative aspect-square w-full min-h-[28rem] overflow-hidden rounded-[1.5rem] border border-border transition-transform duration-500 group-hover:scale-[0.995] bg-background">
         {displayImage ? (
           <>
             <FadeImage src={displayImage} alt={altText} className={`absolute inset-0 h-full w-full ${imageClass}`} />
@@ -293,7 +293,6 @@ export function CollectionsSection() {
                         <ProductCard
                           product={product}
                           displayImage={displayImage}
-                          displayMode={product.album ? 'contain' : 'cover'}
                         />
                       </div>
                     );
