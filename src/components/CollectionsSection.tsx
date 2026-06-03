@@ -193,7 +193,7 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
 
   return (
     <article
-      className="group cursor-pointer w-full max-w-[280px] mx-auto" // ← limita el ancho máximo
+      className="group cursor-pointer w-full max-w-[320px] mx-auto" // ← limita el ancho máximo
       role="button"
       tabIndex={0}
       onClick={() => (window.location.href = '#contatti')}
