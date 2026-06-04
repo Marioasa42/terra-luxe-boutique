@@ -17,14 +17,14 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-black/35" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_30%)]" />
 
-        <div className="relative flex h-full flex-col justify-end pb-12 sm:pb-16 md:pb-20 lg:pb-32 px-6 text-white sm:px-10 lg:px-16">
-          <span className="font-body text-xs tracking-[0.35em] uppercase text-white/80 mb-3">
+        <div className="relative flex h-full flex-col justify-end pb-20 sm:pb-32 md:pb-48 lg:pb-48 px-6 text-white sm:px-10 lg:px-16">
+          <span className="font-body text-xs tracking-[0.35em] uppercase text-white/80 mb-2">
             {t.hero.welcome} · {t.benvenutti.title}
           </span>
-          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-8xl font-extralight tracking-[0.18em] leading-tight max-w-3xl uppercase">
+          <h1 className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-8xl font-extralight tracking-[0.18em] leading-tight max-w-3xl uppercase">
             {t.hero.title}
           </h1>
-          <p className="mt-4 max-w-3xl font-body text-lg md:text-xl text-white/90 leading-relaxed tracking-wide">
+          <p className="mt-3 max-w-2xl font-body text-sm sm:text-base md:text-xl text-white/90 leading-relaxed tracking-wide">
             {t.hero.subtitle}
           </p>
         </div>
