@@ -63,6 +63,9 @@ export const translations = {
       title: 'BENVENUTTI',
       subtitle: 'Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.',
     },
+    brandStory: {
+      title: 'Made in Italy, anima venezuelana.',
+    },
   },
   es: {
     nav: {
@@ -126,6 +129,9 @@ export const translations = {
       title: 'BIENVENIDO',
       subtitle: 'Bolsos veganos sostenibles, creados en series limitadas entre la naturaleza, el lujo y la artesanía italiana.',
     },
+    brandStory: {
+      title: 'Hecho en Italia, alma venezolana.',
+    },
   },
   en: {
     nav: {
@@ -188,6 +194,9 @@ export const translations = {
     benvenutti: {
       title: 'WELCOME',
       subtitle: 'Sustainable vegan bags, created in limited series between nature, luxury and Italian craftsmanship.',
+    },
+    brandStory: {
+      title: 'Made in Italy, Venezuelan soul.',
     },
   },
 } as const;

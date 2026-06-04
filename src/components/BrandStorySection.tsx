@@ -44,7 +44,7 @@ export function BrandStorySection() {
               {t.nav.about}
             </p>
             <h2 className="font-display text-4xl lg:text-5xl font-light text-foreground tracking-wide mb-8">
-              Made in Italy, anima venezuelana.
+              {t.brandStory.title}
             </h2>
 
             <p className="font-body text-sm md:text-base leading-8 text-muted-foreground font-light text-justify break-words tracking-wide">
