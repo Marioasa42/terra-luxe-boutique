@@ -233,8 +233,22 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
 }
 
 export function CollectionsSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [activeAlbumIndices, setActiveAlbumIndices] = useState<Record<string, number>>({});
+
+  const getCollectionTitle = (title: string) => {
+    if (language === 'es') {
+      if (title === 'Eredità di Lusso') return 'Colección de Lujo';
+      if (title === 'Mare') return 'Mar';
+    }
+
+    if (language === 'en') {
+      if (title === 'Eredità di Lusso') return 'Luxury Collection';
+      if (title === 'Mare') return 'Sea';
+    }
+
+    return title;
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -270,7 +284,7 @@ export function CollectionsSection() {
             <div key={collection.title}>
               <div className="mb-8 flex items-end justify-between gap-6">
                 <h3 className="font-display text-5xl lg:text-6xl font-light tracking-wide text-foreground">
-                  {collection.title}
+                  {getCollectionTitle(collection.title)}
                 </h3>
                 <p className="font-body text-xs tracking-[0.24em] uppercase text-muted-foreground">
                   {collection.products.length} pezzi
