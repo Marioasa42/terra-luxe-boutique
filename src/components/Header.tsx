@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
@@ -49,9 +49,6 @@ export function Header() {
           {/* Right side */}
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
-            <button className="text-foreground hover:text-accent transition-colors" aria-label="Cart">
-              <ShoppingBag size={20} />
-            </button>
           </div>
         </div>
       </div>

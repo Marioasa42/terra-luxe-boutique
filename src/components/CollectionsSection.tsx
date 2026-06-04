@@ -216,14 +216,6 @@ function ProductCard({ product, displayImage }: { product: Product; displayImage
         )}
 
         <div className="absolute inset-3 border border-primary/10 pointer-events-none" />
-
-        {product.name && (
-          <div className="absolute bottom-3 right-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <span className="font-body text-[10px] tracking-[0.2em] uppercase text-white bg-black/40 px-2 py-1">
-              Scopri
-            </span>
-          </div>
-        )}
       </div>
 
       <div className="mt-3 space-y-0.5">
