@@ -12,7 +12,7 @@ export function HeroSection() {
           src={portadaImage}
           alt="Portada"
           // En móvil enfoca la derecha (bolso), en desktop centra normalmente
-          className="absolute inset-0 h-full w-full object-cover object-[30%_center] sm:object-center"
+          className="absolute inset-0 h-full w-full object-cover object-[45%_center] sm:object-center"
         />
 
         <div className="absolute inset-0 bg-black/30" />
