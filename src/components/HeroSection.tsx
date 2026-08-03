@@ -24,7 +24,7 @@ export function HeroSection() {
           {/* En móvil el texto va abajo del todo para no tapar la cara */}
           <div className="max-w-[55%] sm:max-w-xl md:max-w-2xl">
             <span className="font-body text-[10px] sm:text-xs tracking-[0.35em] uppercase text-white/70 mb-2 block">
-              {t.hero.welcome} · {t.benvenutti.title}
+              {t.hero.welcome}
             </span>
             <h1 className="font-display text-xl sm:text-3xl md:text-5xl lg:text-8xl font-extralight tracking-[0.18em] leading-tight uppercase">
               {t.hero.title}
