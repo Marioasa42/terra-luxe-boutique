@@ -9,7 +9,7 @@ export const translations = {
       sustainability: 'Sostenibilità',
     },
     hero: {
-      title: 'BENVENUTTI',
+      title: 'BENVENUTI',
       welcome: 'Moda sostenibile di lusso Made in Italy',
       subtitle: 'Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.',
       shopNow: 'Scopri la Collezione',
@@ -60,7 +60,7 @@ export const translations = {
       mini: 'Mini Borsa Sole',
     },
     benvenutti: {
-      title: 'BENVENUTTI',
+      title: 'BENVENUTI',
       subtitle: 'Borse vegane sostenibili, create in serie limitate tra natura, lusso e artigianalità italiana.',
     },
     brandStory: {
